@@ -11,16 +11,14 @@ cask "dodoshot" do
 
   app "DodoShot.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/DodoShot.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.dodoshot.plist",
     "~/Library/Application Support/DodoShot",
   ]
-
-  caveats <<~EOS
-    DodoShot is not notarized. On first launch, you may need to:
-    1. Right-click the app and select "Open"
-    2. Click "Open" in the security dialog
-
-    Or run: xattr -cr /Applications/DodoShot.app
-  EOS
 end

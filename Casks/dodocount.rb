@@ -11,6 +11,12 @@ cask "dodocount" do
 
   app "DodoCount.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/DodoCount.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.dodocount.plist",
     "~/Library/Application Support/DodoCount",

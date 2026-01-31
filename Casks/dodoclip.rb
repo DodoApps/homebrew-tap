@@ -11,16 +11,14 @@ cask "dodoclip" do
 
   app "DodoClip.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/DodoClip.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.dodoclip.plist",
     "~/Library/Application Support/DodoClip",
   ]
-
-  caveats <<~EOS
-    DodoClip is not notarized. On first launch, you may need to:
-    1. Right-click the app and select "Open"
-    2. Click "Open" in the security dialog
-
-    Or run: xattr -cr /Applications/DodoClip.app
-  EOS
 end

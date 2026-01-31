@@ -36,11 +36,9 @@ brew install --cask dodoclip
 
 ## Note
 
-These apps are not notarized. On first launch, you may need to right-click → Open → confirm, or run:
+These apps are not notarized by Apple. The `xattr -cr` command is automatically run during installation to clear quarantine attributes, so most users won't need to do anything extra.
 
-```bash
-xattr -cr /Applications/<AppName>.app
-```
+If you still see a security warning on first launch, right-click the app → Open → confirm.
 
 ## Links
 

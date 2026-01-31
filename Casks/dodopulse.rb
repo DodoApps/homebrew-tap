@@ -7,20 +7,17 @@ cask "dodopulse" do
   desc "Lightweight macOS menu bar system monitor"
   homepage "https://github.com/dodoapps/dodopulse"
 
-  # Requires macOS 12.0 Monterey or later
   depends_on macos: ">= :monterey"
 
   app "DodoPulse.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/DodoPulse.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.bluewave-labs.dodopulse.plist",
   ]
-
-  caveats <<~EOS
-    DodoPulse is not notarized. On first launch, you may need to:
-    1. Right-click the app and select "Open"
-    2. Click "Open" in the security dialog
-
-    Or run: xattr -cr /Applications/DodoPulse.app
-  EOS
 end

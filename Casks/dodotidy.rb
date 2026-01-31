@@ -7,20 +7,17 @@ cask "dodotidy" do
   desc "macOS system cleaner and disk analyzer"
   homepage "https://github.com/dodoapps/dodotidy"
 
-  # Requires macOS 14.0 Sonoma or later
   depends_on macos: ">= :sonoma"
 
   app "DodoTidy.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/DodoTidy.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.dodotidy.app.plist",
   ]
-
-  caveats <<~EOS
-    DodoTidy is not notarized. On first launch, you may need to:
-    1. Right-click the app and select "Open"
-    2. Click "Open" in the security dialog
-
-    Or run: xattr -cr /Applications/DodoTidy.app
-  EOS
 end
