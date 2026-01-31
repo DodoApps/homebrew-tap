@@ -1,6 +1,6 @@
 cask "dodocount" do
-  version "1.0.0"
-  sha256 "76d41f215bcaed06dc801fa5712fec408abc19c2b0eda014f1d53de4f405a644"
+  version "1.1.0"
+  sha256 "9cd88ed45f3651f37977925bc68d4b695711aa3fb5a4905658b5ccd953336377"
 
   url "https://github.com/DodoApps/dodocount/releases/download/v#{version}/DodoCount-#{version}.dmg"
   name "DodoCount"
