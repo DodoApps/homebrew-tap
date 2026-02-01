@@ -1,6 +1,6 @@
 cask "dodopass" do
-  version "1.0.0"
-  sha256 "8eda787074d95e49008f0ce6cf237a1197c68c8e0d74e6f7d5cdefa912db186a"
+  version "1.0.1"
+  sha256 "4ec5f6d1716101fbeab65d10b99e60f1e516e4aa5c32366753e90c3b9a3231b7"
 
   url "https://github.com/DodoApps/dodopass/releases/download/v#{version}/DodoPass-#{version}.dmg"
   name "DodoPass"
