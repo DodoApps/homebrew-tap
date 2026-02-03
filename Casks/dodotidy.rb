@@ -1,6 +1,6 @@
 cask "dodotidy" do
-  version "1.0.5"
-  sha256 "66c5e27f04875a519b821ee053f29b5c9321d598d57c0a94417ff29f988c5690"
+  version "1.0.7"
+  sha256 "e8a97b70f47b6ce3717c1c647f78b795b687f6a607bc36fd51aa8a29356f5965"
 
   url "https://github.com/dodoapps/dodotidy/releases/download/v#{version}/DodoTidy-#{version}.dmg"
   name "DodoTidy"
