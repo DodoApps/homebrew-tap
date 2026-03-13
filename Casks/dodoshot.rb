@@ -1,6 +1,6 @@
 cask "dodoshot" do
   version "1.4.3"
-  sha256 "86156df5edb12841c262df8dd071a6a99d80e125626105500d4b3b6adf42f26f"
+  sha256 "da5096064f19253754fef3d077524f7328f0430a7bd4c996e0f6f0879166fd77"
 
   url "https://github.com/DodoApps/dodoshot/releases/download/v#{version}/DodoShot-#{version}.dmg"
   name "DodoShot"
