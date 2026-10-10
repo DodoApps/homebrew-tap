@@ -4,20 +4,16 @@ cask "dodotidy" do
 
   url "https://github.com/dodoapps/dodotidy/releases/download/v#{version}/DodoTidy-#{version}.dmg"
   name "DodoTidy"
-  desc "macOS system cleaner and disk analyzer"
+  desc "System cleaner and disk analyzer"
   homepage "https://github.com/dodoapps/dodotidy"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoTidy.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoTidy.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoTidy.app"]
   end
 
-  zap trash: [
-    "~/Library/Preferences/com.dodotidy.app.plist",
-  ]
+  zap trash: "~/Library/Preferences/com.dodotidy.app.plist"
 end

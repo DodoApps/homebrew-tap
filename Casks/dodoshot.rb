@@ -4,21 +4,19 @@ cask "dodoshot" do
 
   url "https://github.com/DodoApps/dodoshot/releases/download/v#{version}/DodoShot-#{version}.dmg"
   name "DodoShot"
-  desc "macOS screenshot and screen recording tool"
+  desc "Screenshot and screen recording tool"
   homepage "https://github.com/DodoApps/dodoshot"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoShot.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoShot.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoShot.app"]
   end
 
   zap trash: [
-    "~/Library/Preferences/com.dodoshot.plist",
     "~/Library/Application Support/DodoShot",
+    "~/Library/Preferences/com.dodoshot.plist",
   ]
 end

@@ -4,22 +4,20 @@ cask "dodopass" do
 
   url "https://github.com/DodoApps/dodopass/releases/download/v#{version}/DodoPass-#{version}.dmg"
   name "DodoPass"
-  desc "Native macOS password manager with Touch ID support"
+  desc "Password manager with Touch ID support"
   homepage "https://github.com/DodoApps/dodopass"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoPass.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoPass.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoPass.app"]
   end
 
   zap trash: [
-    "~/Library/Preferences/com.dodopass.plist",
     "~/Library/Application Support/DodoPass",
     "~/Library/Caches/com.dodopass",
+    "~/Library/Preferences/com.dodopass.plist",
   ]
 end
