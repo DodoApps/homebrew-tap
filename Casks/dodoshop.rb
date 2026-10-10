@@ -4,13 +4,15 @@ cask "dodoshop" do
 
   url "https://github.com/DodoApps/dodoshop/releases/download/v#{version}/DodoShop-#{version}-arm64-mac.zip"
   name "DodoShop"
-  desc "Shopify analytics dashboard for macOS"
+  desc "Shopify analytics dashboard"
   homepage "https://github.com/DodoApps/dodoshop"
 
   livecheck do
     url :url
     strategy :github_latest
   end
+
+  depends_on :macos
 
   app "DodoShop.app"
 

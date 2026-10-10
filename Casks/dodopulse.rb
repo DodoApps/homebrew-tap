@@ -4,20 +4,16 @@ cask "dodopulse" do
 
   url "https://github.com/dodoapps/dodopulse/releases/download/v#{version}/DodoPulse-#{version}.dmg"
   name "DodoPulse"
-  desc "Lightweight macOS menu bar system monitor"
+  desc "Menu bar system monitor"
   homepage "https://github.com/dodoapps/dodopulse"
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "DodoPulse.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoPulse.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoPulse.app"]
   end
 
-  zap trash: [
-    "~/Library/Preferences/com.bluewave-labs.dodopulse.plist",
-  ]
+  zap trash: "~/Library/Preferences/com.bluewave-labs.dodopulse.plist"
 end

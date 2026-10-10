@@ -4,21 +4,19 @@ cask "dodoclip" do
 
   url "https://github.com/DodoApps/dodoclip/releases/download/v#{version}/DodoClip-#{version}.dmg"
   name "DodoClip"
-  desc "macOS clipboard manager"
+  desc "Clipboard manager"
   homepage "https://github.com/DodoApps/dodoclip"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoClip.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoClip.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoClip.app"]
   end
 
   zap trash: [
-    "~/Library/Preferences/com.dodoclip.plist",
     "~/Library/Application Support/DodoClip",
+    "~/Library/Preferences/com.dodoclip.plist",
   ]
 end

@@ -4,17 +4,15 @@ cask "dodonest" do
 
   url "https://github.com/dodoapps/dodonest/releases/download/v1.0.0/DodoNest-#{version}.dmg"
   name "DodoNest"
-  desc "macOS menu bar organizer - drag and drop to rearrange menu bar items"
+  desc "Menu bar organizer"
   homepage "https://github.com/dodoapps/dodonest"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoNest.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoNest.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoNest.app"]
   end
 
   zap trash: [

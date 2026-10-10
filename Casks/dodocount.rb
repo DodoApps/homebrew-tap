@@ -4,21 +4,19 @@ cask "dodocount" do
 
   url "https://github.com/DodoApps/dodocount/releases/download/v#{version}/DodoCount-#{version}.dmg"
   name "DodoCount"
-  desc "macOS menubar app for Google Analytics 4 and Search Console"
+  desc "Menubar app for Google Analytics 4 and Search Console"
   homepage "https://github.com/DodoApps/dodocount"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "DodoCount.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/DodoCount.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/DodoCount.app"]
   end
 
   zap trash: [
-    "~/Library/Preferences/com.dodocount.plist",
     "~/Library/Application Support/DodoCount",
+    "~/Library/Preferences/com.dodocount.plist",
   ]
 end
